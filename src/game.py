@@ -17,7 +17,7 @@ class Game:
         self.player.update()
 
     def draw(self):
-        self.screen.fill((0, 0, 0))
+        self.screen.fill((127, 127, 127))
         self.player.draw(self.screen)
         pygame.display.flip()
 

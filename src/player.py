@@ -8,7 +8,7 @@ class Player:
 
     def update(self):
         keys = pygame.key.get_pressed()
-        if keys[pygame.K_LEFT]:
+        if keys[pygame.K_LEFT] or keys[pygame.K_z]:
             self.rect.x -= self.speed
         if keys[pygame.K_RIGHT]:
             self.rect.x += self.speed
@@ -18,4 +18,6 @@ class Player:
             self.rect.y += self.speed
 
     def draw(self, screen):
-        pygame.draw.rect(screen, self.color, self.rect)
+        image = pygame.image.load("assets/images/choqué.png")
+        screen.blit(image, self.rect)
+        #pygame.draw.rect(screen, self.color, self.rect)
