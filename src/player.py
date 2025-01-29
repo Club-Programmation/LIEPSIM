@@ -1,8 +1,13 @@
+import random
+
 import pygame
 
-class Player:
-    def __init__(self):
-        self.rect = pygame.Rect(20, 250, 50, 50)
+class Player(pygame.sprite.Sprite):
+    def __init__(self, x, y):
+        super().__init__()
+        self.image = pygame.image.load("assets/images/choqué.png")
+        self.rect = self.image.get_rect()
+        self.rect.topleft = (x,y)
         self.color = (255, 255, 255)
         self.speed = 5
 
@@ -18,6 +23,5 @@ class Player:
             self.rect.y += self.speed
 
     def draw(self, screen):
-        image = pygame.image.load("assets/images/choqué.png")
-        screen.blit(image, self.rect)
-        #pygame.draw.rect(screen, self.color, self.rect)
+        screen.blit(self.image, self.rect)
+        pygame.display.flip()

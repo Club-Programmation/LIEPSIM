@@ -6,7 +6,7 @@ class Game:
         self.screen = pygame.display.set_mode((800, 600))
         self.clock = pygame.time.Clock()
         self.running = True
-        self.player = Player()
+        self.player = Player(20, 250)
 
     def handle_events(self):
         for event in pygame.event.get():
