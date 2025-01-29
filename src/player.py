@@ -13,13 +13,13 @@ class Player(pygame.sprite.Sprite):
 
     def update(self):
         keys = pygame.key.get_pressed()
-        if keys[pygame.K_LEFT] or keys[pygame.K_z]:
+        if keys[pygame.K_LEFT] or keys[pygame.K_q]:
             self.rect.x -= self.speed
-        if keys[pygame.K_RIGHT]:
+        if keys[pygame.K_RIGHT] or keys[pygame.K_d]:
             self.rect.x += self.speed
-        if keys[pygame.K_UP]:
+        if keys[pygame.K_UP] or keys[pygame.K_z]:
             self.rect.y -= self.speed
-        if keys[pygame.K_DOWN]:
+        if keys[pygame.K_DOWN] or keys[pygame.K_s]:
             self.rect.y += self.speed
 
     def draw(self, screen):
