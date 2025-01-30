@@ -9,8 +9,7 @@ class Player(pygame.sprite.Sprite):
     def __init__(self, x, y):
         super().__init__()
         # chokbarifié
-        self.image = pygame.transform.scale(pygame.image.load("assets/images/choqué.png"), (200, 200))
-        scaled_sprite = pygame.transform.scale(self.image, (50, 50))
+        self.image = pygame.transform.scale(pygame.image.load("assets/images/choqué.png"), (100, 100))
         self.rect = self.image.get_rect()
         # mettre le rectangle en x,y
         self.rect.topleft = (x,y)
