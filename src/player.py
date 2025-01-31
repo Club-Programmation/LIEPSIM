@@ -1,36 +1,63 @@
-import random
-
 import pygame
 
 class Player(pygame.sprite.Sprite):
     # Initialisation du joueur.
     # @param x - Coordonnées X du joueur ; en fonction du coin supérieur gauche.
-    # @param y - Coordonnées Y du joueur ; en fonction du coin supérieur gauche.
+    # @param y - Coordonnées Y du joueur ; en fonction du coin supérieur gauche.    
     def __init__(self, x, y):
         super().__init__()
-        # chokbarifié
-        self.image = pygame.transform.scale(pygame.image.load("assets/images/choqué.png"), (100, 100))
-        self.rect = self.image.get_rect()
-        # mettre le rectangle en x,y
-        self.rect.topleft = (x,y)
-        self.color = (255, 255, 255)
-        self.speed = 5
 
-    # Fonction UPDATE afin de mettre à jour les données du joueur
-    # Actuellement :
-    # - Mouvement ZQSD
+        # On créé les listes d'images pour chaque animation
+        self.walk_right = [
+            pygame.transform.scale(pygame.image.load("assets/images/choqué.png"), (100, 100)),
+            pygame.transform.scale(pygame.image.load("assets/images/right_arrow.png"), (100, 100)),
+            pygame.transform.scale(pygame.image.load("assets/images/up_arrow.png"), (100, 100))
+        ]
+        self.color = (255, 255, 255)
+
+        # Là ça définit l'image de départ
+        self.image = self.walk_right[0] # On commence à la première frame
+        self.rect = self.image.get_rect()
+        self.rect.topleft = (x, y)
+
+        
+        self.frame_index = 0 
+        self.animation_speed = 5  # Ca change de frame toutes les 5 boucles du jeu
+        self.counter = 0  # Ca sert pour plus tard
+
+        self.speed = 5
+        self.direction = "right"  #On dit que le perso commence en regardant vers la droite
+
     def update(self):
         keys = pygame.key.get_pressed()
-        if keys[pygame.K_LEFT] or keys[pygame.K_q]: # Q ou left arrow
+        moving = False
+
+        
+        if keys[pygame.K_LEFT] or keys[pygame.K_q]: 
             self.rect.x -= self.speed
-        if keys[pygame.K_RIGHT] or keys[pygame.K_d]: # D ou right arrow
+        if keys[pygame.K_RIGHT] or keys[pygame.K_d]:
             self.rect.x += self.speed
+            self.direction = "right"
+            moving = True
         if keys[pygame.K_UP] or keys[pygame.K_z]: # Z ou up arrow
             self.rect.y -= self.speed
         if keys[pygame.K_DOWN] or keys[pygame.K_s]: # S ou down arrow
             self.rect.y += self.speed
+        # Fonction de l'animation
+        if moving:
+            self.counter += 1
+            if self.counter >= self.animation_speed:
+                self.counter = 0  # Ca reset le counter
+                self.frame_index = (self.frame_index + 1) % len(self.walk_right)  # Ca permet de faire une boucle qui revient à la 1ère frame
+        else:
+            self.frame_index = 0  # Quand le perso bouge pas il est tjrs à  la 1ère frame
 
-    # 
+        # Ca affiche l'animation quand le perso va à droite
+        if self.direction == "right":
+            self.image = self.walk_right[self.frame_index]
+
+
     def draw(self, screen):
         screen.blit(self.image, self.rect) # draw
         pygame.display.flip()
+
