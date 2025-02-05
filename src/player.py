@@ -26,7 +26,7 @@ class Player(pygame.sprite.Sprite):
         self.counter = 0  # Ca sert pour plus tard
 
         self.speed = 5
-        self.direction = "right"  #On dit que le perso commence en regardant vers la droite
+        self.direction = "right"  # On dit que le perso commence en regardant vers la droite
 
     def update(self):
         keys = pygame.key.get_pressed()
@@ -35,24 +35,32 @@ class Player(pygame.sprite.Sprite):
         
         if keys[pygame.K_LEFT] or keys[pygame.K_q]: 
             self.rect.x -= self.speed
+            self.direction = "left"
+            moving = True
         if keys[pygame.K_RIGHT] or keys[pygame.K_d]:
             self.rect.x += self.speed
             self.direction = "right"
             moving = True
         if keys[pygame.K_UP] or keys[pygame.K_z]: # Z ou up arrow
             self.rect.y -= self.speed
+            self.direction = "up"
+            moving = True
         if keys[pygame.K_DOWN] or keys[pygame.K_s]: # S ou down arrow
             self.rect.y += self.speed
+            self.direction = "down"
+            moving = True
+            
         # Fonction de l'animation
         if moving:
             self.counter += 1
             if self.counter >= self.animation_speed:
-                self.counter = 0  # Ca reset le counter
-                self.frame_index = (self.frame_index + 1) % len(self.walk_right)  # Ca permet de faire une boucle qui revient à la 1ère frame
+                self.counter = 0  # Reset le counter
+                self.frame_index = (self.frame_index + 1) % len(self.walk_right)  # Permet de faire une boucle qui revient à la 1ère frame
         else:
-            self.frame_index = 0  # Quand le perso bouge pas il est tjrs à  la 1ère frame
+            self.frame_index = 0  # Quand le perso bouge pas il est toujours à la 1ère frame
 
-        # Ca affiche l'animation quand le perso va à droite
+        # Ca affiche l'animation en fonction de la direction du personnage
+        # J'aurais mis un match-case statement si Python 3.10
         if self.direction == "right":
             self.image = self.walk_right[self.frame_index]
 
