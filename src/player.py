@@ -1,3 +1,4 @@
+# Classe déstiné pour le joueur
 import pygame
 
 class Player(pygame.sprite.Sprite):
@@ -13,6 +14,7 @@ class Player(pygame.sprite.Sprite):
             pygame.transform.scale(pygame.image.load("assets/images/right_arrow.png"), (100, 100)),
             pygame.transform.scale(pygame.image.load("assets/images/up_arrow.png"), (100, 100))
         ]
+        # Couleur de peau ???????? (RG)
         self.color = (255, 255, 255)
 
         # Là ça définit l'image de départ
@@ -25,14 +27,14 @@ class Player(pygame.sprite.Sprite):
         self.animation_speed = 5  # Ca change de frame toutes les 5 boucles du jeu
         self.counter = 0  # Ca sert pour plus tard
 
-        self.speed = 5
+        self.speed = 5 # Vitesse du joueur fixe
         self.direction = "right"  # On dit que le perso commence en regardant vers la droite
 
     def update(self):
-        keys = pygame.key.get_pressed()
-        moving = False
+        keys = pygame.key.get_pressed() # Quelles touches sont appuiyées
+        moving = False # Le joueur ne bouge pas
 
-        
+        # Mécaniques de mouvement        
         if keys[pygame.K_LEFT] or keys[pygame.K_q]: 
             self.rect.x -= self.speed
             self.direction = "left"
@@ -59,12 +61,12 @@ class Player(pygame.sprite.Sprite):
         else:
             self.frame_index = 0  # Quand le perso bouge pas il est toujours à la 1ère frame
 
-        # Ca affiche l'animation en fonction de la direction du personnage
+        # Ca affiche l'animation en fonction de la direction du personnage (WIP)
         # J'aurais mis un match-case statement si Python 3.10
         if self.direction == "right":
             self.image = self.walk_right[self.frame_index]
 
-
+    # Fonction récurrente de dessin
     def draw(self, screen):
         screen.blit(self.image, self.rect) # draw
         pygame.display.flip()
