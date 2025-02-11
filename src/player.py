@@ -1,10 +1,11 @@
 # Classe déstiné pour le joueur
 import pygame
+from variables import Variables
 
 class Player(pygame.sprite.Sprite):
     # Initialisation du joueur.
     # @param x - Coordonnées X du joueur ; en fonction du coin supérieur gauche.
-    # @param y - Coordonnées Y du joueur ; en fonction du coin supérieur gauche.    
+    # @param y - Coordonnées Y du joueur ; en fonction du coin supérieur gauche.
     def __init__(self, x, y):
         super().__init__()
 
@@ -21,7 +22,6 @@ class Player(pygame.sprite.Sprite):
         self.image = self.walk_right[0] # On commence à la première frame
         self.rect = self.image.get_rect()
         self.rect.topleft = (x, y)
-
         
         self.frame_index = 0 
         self.animation_speed = 5  # Ca change de frame toutes les 5 boucles du jeu
@@ -31,23 +31,22 @@ class Player(pygame.sprite.Sprite):
         self.direction = "right"  # On dit que le perso commence en regardant vers la droite
 
     def update(self):
-        keys = pygame.key.get_pressed() # Quelles touches sont appuiyées
-        moving = False # Le joueur ne bouge pas
-
-        # Mécaniques de mouvement        
-        if keys[pygame.K_LEFT] or keys[pygame.K_q]: 
+        moving = False
+        var = Variables()
+        
+        if var.KEY_LEFT: 
             self.rect.x -= self.speed
             self.direction = "left"
             moving = True
-        if keys[pygame.K_RIGHT] or keys[pygame.K_d]:
+        if var.KEY_RIGHT:
             self.rect.x += self.speed
             self.direction = "right"
             moving = True
-        if keys[pygame.K_UP] or keys[pygame.K_z]: # Z ou up arrow
+        if var.KEY_UP:
             self.rect.y -= self.speed
             self.direction = "up"
             moving = True
-        if keys[pygame.K_DOWN] or keys[pygame.K_s]: # S ou down arrow
+        if var.KEY_DOWN:
             self.rect.y += self.speed
             self.direction = "down"
             moving = True
