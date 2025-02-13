@@ -1,4 +1,6 @@
 import pygame
+import sys
+import os
 
 class Keys:
   def __init__(self):
@@ -21,17 +23,23 @@ class Colors:
 
 class Images:
   def __init__(self):
-    images = "assets/images/"
-    arrows = images + "arrows/"
-    logos = images + "logos/"
-    skins = images + "skins/"
+    if getattr(sys, 'frozen', False):
+      base_path = sys._MEIPASS  # Dossier temporaire PyInstaller
+    else:
+      base_path = os.path.abspath(".")
 
-    self.up_arrow = arrows + "up_arrow.png"
-    self.down_arrow = arrows + "down_arrow.png"
-    self.left_arrow = arrows + "left_arrow.png"
-    self.right_arrow = arrows + "right_arrow.png"
-    self.club_programmation = logos + "club_programmation.jpg"
-    self.choqué = skins + "choqué.png"
+    assets_path = os.path.join(base_path, "assets")
+    images_path = os.path.join(assets_path, "images")
+    arrows_path = os.path.join(images_path, "arrows")
+    logos_path = os.path.join(images_path, "logos")
+    skins_path = os.path.join(images_path, "skins")
+
+    self.up_arrow = os.path.join(arrows_path, "up_arrow.png")
+    self.down_arrow = os.path.join(arrows_path, "down_arrow.png")
+    self.left_arrow = os.path.join(arrows_path, "left_arrow.png")
+    self.right_arrow = os.path.join(arrows_path, "right_arrow.png")
+    self.club_programmation = os.path.join(logos_path, "club_programmation.jpg")
+    self.choqué = os.path.join(skins_path, "choqué.png")
 
 def center(width, height):
   return [(800 - width) // 2, (600 - height) // 2]
