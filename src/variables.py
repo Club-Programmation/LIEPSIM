@@ -38,7 +38,7 @@ class Images:
     self.down_arrow = os.path.join(arrows_path, "down_arrow.png")
     self.left_arrow = os.path.join(arrows_path, "left_arrow.png")
     self.right_arrow = os.path.join(arrows_path, "right_arrow.png")
-    self.club_programmation = os.path.join(logos_path, "club_programmation.jpg")
+    self.club_programmation = os.path.join(logos_path, "club_programmation.png")
     self.choqué = os.path.join(skins_path, "choqué.png")
 
 def center(width, height):

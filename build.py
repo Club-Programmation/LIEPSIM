@@ -2,20 +2,22 @@ import os
 import sys
 import platform
 
-def get_os_separator():
-    # Séparateur de chemin en fonction du système d'exploitation.
-    if platform.system() == "Windows":
-        return ";"
-    return ":"
+os_name = platform.system()
+
+def get_os_command(app_name):
+    match os_name:
+        case "Windows":
+            return f'pyinstaller --onefile --add-data "assets;assets" --name {app_name} src/main.py'
+        case "Darwin":
+            return f'pyinstaller --onedir --windowed --icon=assets/images/logos/club_programmation.icns --add-data "assets:assets" --name {app_name} --osx-bundle-identifier com.club-programmation.liepsim src/main.py'
+        case _:
+            return f'pyinstaller --onefile --add-data "assets:assets" --name {app_name} src/main.py'
 
 def main():
-    separator = get_os_separator()
+    print(f'Vous êtes sur : {os_name}')
 
-    print(f'Vous êtes sur : {"Windows" if platform.system() == "Windows" else "Linux/MacOS"}')
-
-    exe_name = input("Entrez le nom de l'exécutable (LIEPSIM par défaut) : ").strip() or "LIEPSIM"
-
-    command = f'pyinstaller --onefile --add-data "assets{separator}assets" --name {exe_name} src/main.py'
+    app_name = input("Entrez le nom de l'exécutable (LIEPSIM par défaut) : ").strip() or "LIEPSIM"
+    command = get_os_command(app_name)
     
     print(f"Exécution de la commande : {command}")
     os.system(command)
