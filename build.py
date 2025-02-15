@@ -7,7 +7,7 @@ os_name = platform.system()
 def get_os_command(app_name):
     match os_name:
         case "Windows":
-            return f'pyinstaller --onefile --add-data "assets;assets" --name {app_name} src/main.py'
+            return f'pyinstaller --onefile --windowed --icon=assets/images/logos/club_programmation.ico --add-data "assets;assets" --name {app_name} src/main.py'
         case "Darwin":
             return f'pyinstaller --onedir --windowed --icon=assets/images/logos/club_programmation.icns --add-data "assets:assets" --name {app_name} --osx-bundle-identifier com.club-programmation.liepsim src/main.py'
         case _:
