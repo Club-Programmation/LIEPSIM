@@ -1,9 +1,9 @@
 import pygame
 from player import Player
+from menu import Menu
 
 class Game:
     def __init__(self):
-        self.screen = pygame.display.set_mode((800, 600))
         self.clock = pygame.time.Clock()
         self.running = True
         self.player = Player(20, 250)
@@ -17,12 +17,13 @@ class Game:
         self.player.update()
 
     def draw(self):
-        self.screen.fill((127, 127, 127))
-        self.player.draw(self.screen)
+        Menu.surface.fill((127, 127, 127))
+        self.player.draw(Menu.surface)
         pygame.display.flip()
 
     def run(self):
         while self.running:
+            Menu.mainmenu.mainloop(Menu.surface)
             self.handle_events()
             self.update()
             self.draw()
