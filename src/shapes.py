@@ -1,3 +1,4 @@
+# Fichier pour les différentes formes de pygame
 import pygame
 
 class Shape:

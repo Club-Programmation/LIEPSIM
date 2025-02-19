@@ -1,27 +1,105 @@
-import random
-
 import pygame
+from variables import *
 
 class Player(pygame.sprite.Sprite):
+    # Initialisation du joueur
+    # @param x - Coordonnées X du joueur ; en fonction du coin supérieur gauche.
+    # @param y - Coordonnées Y du joueur ; en fonction du coin supérieur gauche.
     def __init__(self, x, y):
         super().__init__()
-        self.image = pygame.image.load("assets/images/choqué.png")
-        self.rect = self.image.get_rect()
-        self.rect.topleft = (x,y)
-        self.color = (255, 255, 255)
-        self.speed = 5
+        self.images = Images()
+
+        # Listes d'images pour chaque animation
+        self.walk_up = [
+            load_and_scale_image(self.images.choqué),
+            load_and_scale_image(self.images.up_arrow)
+        ]
+        self.walk_down = [
+            load_and_scale_image(self.images.choqué),
+            load_and_scale_image(self.images.down_arrow)
+        ]
+        self.walk_left = [
+            load_and_scale_image(self.images.choqué),
+            load_and_scale_image(self.images.left_arrow)
+        ]
+        self.walk_right = [
+            load_and_scale_image(self.images.choqué),
+            load_and_scale_image(self.images.right_arrow)
+        ]
+
+
+        # Image de départ
+        self.image = self.walk_right[0] # On commence à la première frame
+        width, height = self.image.get_size()
+        x, y = center(width, height)
+        self.rect = pygame.Rect(x, y, width, height)
+        #self.rect = pygame.Rect(center(width, height)[0], center(width, height)[1], width, height)
+        
+        self.frame_index = 0 
+        self.animation_speed = 15 # Ca change de frame toutes les 15 boucles du jeu
+        self.counter = 0 # Ca sert pour plus tard
+
+        self.speed = 5 # Vitesse du joueur fixe
+        self.direction = "right" # On dit que le perso commence en regardant vers la droite
 
     def update(self):
-        keys = pygame.key.get_pressed()
-        if keys[pygame.K_LEFT] or keys[pygame.K_z]:
-            self.rect.x -= self.speed
-        if keys[pygame.K_RIGHT]:
-            self.rect.x += self.speed
-        if keys[pygame.K_UP]:
+        moving = False
+        keys = Keys()
+        
+        """if keys.up:
             self.rect.y -= self.speed
-        if keys[pygame.K_DOWN]:
+            self.direction = "up"
+            moving = True
+        if keys.down:
             self.rect.y += self.speed
+            self.direction = "down"
+            moving = True
+        if keys.left: 
+            self.rect.x -= self.speed
+            self.direction = "left"
+            moving = True
+        if keys.right:
+            self.rect.x += self.speed
+            self.direction = "right"
+            moving = True"""
+        # Dictionnaire pour gérer les déplacements en fonction des touches
+        directions = {
+            'up': (0, -self.speed),
+            'down': (0, self.speed),
+            'left': (-self.speed, 0),
+            'right': (self.speed, 0)
+        }
 
+        # Vérification des touches et mise à jour de la position
+        for direction, (dx, dy) in directions.items():
+            if getattr(keys, direction): # Vérifie si la touche correspondant à la direction est pressée
+                self.rect.x += dx
+                self.rect.y += dy
+                self.direction = direction
+                moving = True
+                break
+
+            
+        # Fonction de l'animation
+        if moving:
+            self.counter += 1
+            if self.counter >= self.animation_speed:
+                self.counter = 0  # Reset le counter
+                self.frame_index = (self.frame_index + 1) % len(self.walk_right)  # Permet de faire une boucle qui revient à la 1ère frame
+        else:
+            self.frame_index = 0  # Quand le perso bouge pas il est toujours à la 1ère frame
+
+        # Ca affiche l'animation en fonction de la direction du personnage (WIP)
+        match self.direction:
+            case "up":
+                self.image = self.walk_up[self.frame_index]
+            case "down":
+                self.image = self.walk_down[self.frame_index]
+            case "left":
+                self.image = self.walk_left[self.frame_index]
+            case "right":
+                self.image = self.walk_right[self.frame_index]
+
+    # Fonction récurrente de dessin
     def draw(self, screen):
         screen.blit(self.image, self.rect)
-        pygame.display.flip()

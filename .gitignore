@@ -32,3 +32,8 @@ Thumbs.db
 *.txt  # Logs ou données temporaires si générés
 *.wav  # Si non versionné intentionnellement
 *.png  # Ressources si non versionnées intentionnellement
+
+# Installeur
+build
+dist
+*.spec
