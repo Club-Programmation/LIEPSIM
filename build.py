@@ -11,7 +11,7 @@ def get_os_command(app_name):
         case "Darwin":
             return f'pyinstaller --onedir --windowed --icon=assets/images/logos/club_programmation.icns --add-data "assets:assets" --name {app_name} --osx-bundle-identifier com.club-programmation.liepsim src/main.py'
         case _:
-            return f'pyinstaller --onefile --add-data "assets:assets" --name {app_name} src/main.py'
+            return f'pyinstaller --onefile --windowed --add-data "assets:assets" --name {app_name} src/main.py'
 
 def main():
     print(f'Vous êtes sur : {os_name}')
