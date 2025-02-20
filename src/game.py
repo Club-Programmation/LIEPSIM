@@ -12,6 +12,9 @@ class Game:
         self.colors = Colors()
         self.assets = Assets()
 
+        pygame.mixer.music.load("assets/sounds/Candyland.mp3")
+        pygame.mixer.music.play()
+
         self.clock = pygame.time.Clock()
         self.running = True
         self.player = Player(400, 300) # Le joueur
@@ -44,6 +47,7 @@ class Game:
                 Menu.main_menu.draw(Menu.surface)
 
             if Menu.start==1:
+                pygame.mixer.music.stop()
                 self.player.update()
                 self.draw() # Raffraichissement de l'écran
                 self.clock.tick(60)

@@ -52,6 +52,9 @@ class Menu:
                     "Annie WANG",
                     " "]
 
+    engine = pygame_menu.sound.Sound()
+    engine.set_sound(pygame_menu.sound.SOUND_TYPE_WIDGET_SELECTION, "assets/sounds/fart.mp3")
+
     def start_the_game():
         Menu.start = 1
 
@@ -66,11 +69,13 @@ class Menu:
     main_menu.add.button('Options', options_menu)
     main_menu.add.button('Credits', credits_menu_open)
     main_menu.add.button('Quitter', pygame_menu.events.EXIT)
+    main_menu.set_sound(engine, recursive=True)
 
     credits_menu = pygame_menu.Menu(" ", 800, 450, theme=theme_credits)
     for i in credits_text:
         credits_menu.add.label(i, align=pygame_menu.locals.ALIGN_CENTER, font_size=20)
     credits_menu.add.button('Precedent', pygame_menu.events.BACK)
+    credits_menu.set_sound(engine, recursive=True)
 
     options = pygame_menu.Menu('Options', 600, 400)
     options.add.selector('', [('', 1), ('', 2)])
