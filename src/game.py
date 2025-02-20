@@ -19,10 +19,10 @@ class Game:
         self.arrow = Object(0, 0, self.images.up_arrow)
 
     # Fonction pour gérer les événements
-    def handle_events(self):
-        for event in pygame.event.get():
-            if event.type == pygame.QUIT or Keys().esc:
-                self.eventlistener.quit()
+    #def handle_events(self):
+        # for event in pygame.event.get():
+        #    if event.type == pygame.QUIT or Keys().esc:
+        #        self.eventlistener.quit()
 
     # Fonction de dessin
     def draw(self):
@@ -34,8 +34,19 @@ class Game:
     # Boucle de jeu principale
     def run(self):
         while self.running:
-            Menu.mainmenu.mainloop(Menu.surface)
-            self.handle_events()
-            self.player.update()
-            self.draw() # Raffraichissement de l'écran
-            self.clock.tick(60)
+            events = pygame.event.get()
+            for event in events:
+                if event.type == pygame.QUIT or Keys().esc:
+                    exit()
+
+            if Menu.mainmenu.is_enabled():
+                Menu.mainmenu.update(events)
+                Menu.mainmenu.draw(Menu.surface)
+
+            if Menu.start==1:
+                self.player.update()
+                self.draw() # Raffraichissement de l'écran
+                self.clock.tick(60)
+
+            pygame.display.update()
+            #self.handle_events()
