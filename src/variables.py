@@ -48,6 +48,12 @@ class Assets:
     fonts_path = os.path.join(assets_path, "fonts")
 
     self.super_pixel = os.path.join(fonts_path, "SuperPixel.ttf")
+
+    # Sounds
+    sounds_path = os.path.join(assets_path, "sounds")
+
+    self.fart = os.path.join(sounds_path, "fart.mp3")
+    self.candyland = os.path.join(sounds_path, "CandyLand.mp3")
   
 def center(width, height):
   return [(800 - width) // 2, (600 - height) // 2]

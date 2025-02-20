@@ -12,7 +12,7 @@ class Game:
         self.colors = Colors()
         self.assets = Assets()
 
-        pygame.mixer.music.load("assets/sounds/Candyland.mp3")
+        pygame.mixer.music.load(self.assets.candyland)
         pygame.mixer.music.play()
 
         self.clock = pygame.time.Clock()
@@ -39,7 +39,7 @@ class Game:
         while self.running:
             events = pygame.event.get()
             for event in events:
-                if event.type == pygame.QUIT or Keys().esc:
+                if event.type == pygame.QUIT:
                     exit()
 
             if Menu.main_menu.is_enabled():

@@ -1,5 +1,6 @@
 import pygame
 from variables import *
+from menu import Menu
 
 class Player(pygame.sprite.Sprite):
     # Initialisation du joueur
@@ -78,8 +79,10 @@ class Player(pygame.sprite.Sprite):
                 self.direction = direction
                 moving = True
                 break
-
-            
+        
+        if Keys().esc:
+            Menu.start = 0
+        
         # Fonction de l'animation
         if moving:
             self.counter += 1

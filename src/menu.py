@@ -37,7 +37,7 @@ class Menu:
                                       scrollbar_slider_color=(225, 225, 225))
     credits_text = ["Credits",
                     " ",
-                    "Deloppeurs ",
+                    "Developpeurs",
                     " ",
                     "Kyllian LIM",
                     "Valentin MUSEREAU",
@@ -53,7 +53,7 @@ class Menu:
                     " "]
 
     engine = pygame_menu.sound.Sound()
-    engine.set_sound(pygame_menu.sound.SOUND_TYPE_WIDGET_SELECTION, "assets/sounds/fart.mp3")
+    engine.set_sound(pygame_menu.sound.SOUND_TYPE_WIDGET_SELECTION, assets.fart)
 
     def start_the_game():
         Menu.start = 1
