@@ -7,24 +7,24 @@ class Player(pygame.sprite.Sprite):
     # @param y - Coordonnées Y du joueur ; en fonction du coin supérieur gauche.
     def __init__(self, x, y):
         super().__init__()
-        self.images = Images()
+        self.assets = Assets()
 
         # Listes d'images pour chaque animation
         self.walk_up = [
-            load_and_scale_image(self.images.choqué),
-            load_and_scale_image(self.images.up_arrow)
+            load_and_scale_image(self.assets.choqué),
+            load_and_scale_image(self.assets.up_arrow)
         ]
         self.walk_down = [
-            load_and_scale_image(self.images.choqué),
-            load_and_scale_image(self.images.down_arrow)
+            load_and_scale_image(self.assets.choqué),
+            load_and_scale_image(self.assets.down_arrow)
         ]
         self.walk_left = [
-            load_and_scale_image(self.images.choqué),
-            load_and_scale_image(self.images.left_arrow)
+            load_and_scale_image(self.assets.choqué),
+            load_and_scale_image(self.assets.left_arrow)
         ]
         self.walk_right = [
-            load_and_scale_image(self.images.choqué),
-            load_and_scale_image(self.images.right_arrow)
+            load_and_scale_image(self.assets.choqué),
+            load_and_scale_image(self.assets.right_arrow)
         ]
 
 

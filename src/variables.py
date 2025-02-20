@@ -21,7 +21,7 @@ class Colors:
     self.grey = (127, 127, 127)
     self.white = (255, 255, 255)
 
-class Images:
+class Assets:
   def __init__(self):
     if getattr(sys, 'frozen', False):
       base_path = sys._MEIPASS  # Dossier temporaire PyInstaller
@@ -29,6 +29,8 @@ class Images:
       base_path = os.path.abspath(".")
 
     assets_path = os.path.join(base_path, "assets")
+
+    # Images
     images_path = os.path.join(assets_path, "images")
     arrows_path = os.path.join(images_path, "arrows")
     logos_path = os.path.join(images_path, "logos")
@@ -40,7 +42,13 @@ class Images:
     self.right_arrow = os.path.join(arrows_path, "right_arrow.png")
     self.club_programmation = os.path.join(logos_path, "club_programmation.png")
     self.choqué = os.path.join(skins_path, "choqué.png")
+    self.liep_background = os.path.join(images_path, "liep_background.png")
 
+    # Fonts
+    fonts_path = os.path.join(assets_path, "fonts")
+
+    self.super_pixel = os.path.join(fonts_path, "SuperPixel.ttf")
+  
 def center(width, height):
   return [(800 - width) // 2, (600 - height) // 2]
 

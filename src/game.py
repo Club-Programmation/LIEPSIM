@@ -10,13 +10,13 @@ class Game:
     # Résolution : 800x600
     def __init__(self):
         self.colors = Colors()
-        self.images = Images()
+        self.assets = Assets()
 
         self.clock = pygame.time.Clock()
         self.running = True
         self.player = Player(400, 300) # Le joueur
         self.eventlistener = EventListener(self)
-        self.arrow = Object(0, 0, self.images.up_arrow)
+        self.arrow = Object(0, 0, self.assets.up_arrow)
 
     # Fonction pour gérer les événements
     #def handle_events(self):
@@ -39,9 +39,9 @@ class Game:
                 if event.type == pygame.QUIT or Keys().esc:
                     exit()
 
-            if Menu.mainmenu.is_enabled():
-                Menu.mainmenu.update(events)
-                Menu.mainmenu.draw(Menu.surface)
+            if Menu.main_menu.is_enabled():
+                Menu.main_menu.update(events)
+                Menu.main_menu.draw(Menu.surface)
 
             if Menu.start==1:
                 self.player.update()
