@@ -7,7 +7,7 @@ from variables import *
 
 class Game:
     # Fonction de création de la fenêtre du jeu
-    # Résolution : 800x600
+    # Résolution : 800x450
     def __init__(self):
         self.colors = Colors()
         self.assets = Assets()
@@ -36,6 +36,7 @@ class Game:
 
     # Boucle de jeu principale
     def run(self):
+        Menu.menu_init()
         while self.running:
             events = pygame.event.get()
             for event in events:
