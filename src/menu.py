@@ -78,15 +78,15 @@ class Menu:
 
     custom_controller.move_down = btn_move_down
 
-    def start_the_game(self):
+    def start_the_game():
         Menu.start = 1
         Menu.main_menu.clear()
         Menu.main_menu.full_reset()
 
-    def options_menu_open(self):
+    def options_menu_open():
         Menu.main_menu._open(Menu.options_menu)
 
-    def credits_menu_open(self):
+    def credits_menu_open():
         Menu.main_menu._open(Menu.credits_menu)
 
 
