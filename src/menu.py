@@ -7,31 +7,35 @@ class Menu:
     assets = Assets()
     start = 0
     surface = pygame.display.set_mode((800, 450))
+    color_selection = (225, 225, 225)
+    widget_color = (255, 255, 255)
+    widget_size = 30
+    padding = (16, 32)
     menu_background_image = pygame_menu.baseimage.BaseImage(image_path=assets.liep_background, drawing_mode=pygame_menu.baseimage.IMAGE_MODE_REPEAT_XY)
     font_title = assets.super_pixel
     font_widget = pygame_menu.font.FONT_8BIT
     menu_bar_style = pygame_menu.widgets.MENUBAR_STYLE_NONE
 
     theme_main_menu = pygame_menu.Theme(background_color=menu_background_image,
-                                       selection_color=(225, 225, 225),
+                                       selection_color=color_selection,
                                        title_bar_style=menu_bar_style,
                                        title_font=font_title,
                                        title_font_color=(255, 255, 255),
                                        title_font_size=60,
                                        title_offset=(250, 40),
                                        widget_font=font_widget,
-                                       widget_font_color=(255, 255, 255),
-                                       widget_font_size=30,
-                                       widget_padding=(16, 32))
+                                       widget_font_color=widget_color,
+                                       widget_font_size=widget_size,
+                                       widget_padding=padding)
 
     theme_credits = pygame_menu.Theme(background_color=menu_background_image,
-                                      selection_color=(225, 225, 225),
+                                      selection_color=color_selection,
                                       title_bar_style=menu_bar_style,
                                       title_close_button=False,
                                       widget_font=font_widget,
-                                      widget_font_color=(255, 255, 255),
-                                      widget_font_size=30,
-                                      widget_padding=(16, 32),
+                                      widget_font_color=widget_color,
+                                      widget_font_size=widget_size,
+                                      widget_padding=padding,
                                       scrollbar_color=(255, 255, 255),
                                       scrollbar_slider_color=(225, 225, 225))
 
