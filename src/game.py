@@ -51,7 +51,7 @@ class Game:
                 pygame.mixer.music.stop()
                 self.player.update()
                 self.draw() # Raffraichissement de l'écran
-                self.clock.tick(60)
 
             pygame.display.update()
+            self.clock.tick(60)
             #self.handle_events()
