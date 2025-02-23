@@ -83,7 +83,7 @@ class Player(pygame.sprite.Sprite):
         if Keys().esc:
             Menu.start = 0
             pygame.mixer.music.play()
-            Menu.menu_init()
+            Menu.menu_init(Menu())
             Menu.main_menu.force_surface_update()
         
         # Fonction de l'animation

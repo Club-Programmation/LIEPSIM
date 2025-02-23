@@ -36,7 +36,7 @@ class Game:
 
     # Boucle de jeu principale
     def run(self):
-        Menu.menu_init()
+        Menu.menu_init(Menu())
         while self.running:
             events = pygame.event.get()
             for event in events:
