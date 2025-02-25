@@ -56,7 +56,7 @@ class Assets:
     self.candyland = os.path.join(sounds_path, "Candyland.mp3")
   
 def center(width, height):
-  return [(800 - width) // 2, (600 - height) // 2]
+  return [(800 - width) // 2, (450 - height) // 2]
 
 def load_and_scale_image(image_path, size=(100, 100)):
     # Charge et redimensionne une image
