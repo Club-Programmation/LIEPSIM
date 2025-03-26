@@ -6,19 +6,24 @@ class Menu:
     pygame.init()
     assets = Assets()
     start = 0
-    # définir la taille de la fenêtre
-    surface = pygame.display.set_mode((800, 450))
-    # définir les variables pour les menu
+    # Définir la taille de la fenêtre
+    fullscreen = False
+    width = 800
+    height = 450
+    surface = pygame.display.set_mode((width, height), pygame.RESIZABLE)
+    #surface = pygame.display.set_mode((800, 450))
+
+    # Définir les variables pour les menu
     color_selection = (225, 225, 225)
     widget_color = (255, 255, 255)
     widget_size = 30
     padding = (16, 32)
-    menu_background_image = pygame_menu.baseimage.BaseImage(image_path=assets.liep_background, drawing_mode=pygame_menu.baseimage.IMAGE_MODE_REPEAT_XY)
+    menu_background_image = pygame_menu.baseimage.BaseImage(image_path=assets.liep_background, drawing_mode = pygame_menu.baseimage.IMAGE_MODE_REPEAT_XY)
     font_title = assets.super_pixel
     font_widget = pygame_menu.font.FONT_8BIT
     menu_bar_style = pygame_menu.widgets.MENUBAR_STYLE_NONE
 
-    # définir le thème du menu principal
+    # Définir le thème du menu principal
     theme_main_menu = pygame_menu.Theme(background_color=menu_background_image,
                                        selection_color=color_selection,
                                        title_bar_style=menu_bar_style,
@@ -31,7 +36,7 @@ class Menu:
                                        widget_font_size=widget_size,
                                        widget_padding=padding)
 
-    # définir le thème du menu des crédits
+    # Définir le thème du menu des crédits
     theme_credits = pygame_menu.Theme(background_color=menu_background_image,
                                       selection_color=color_selection,
                                       title_bar_style=menu_bar_style,
@@ -42,7 +47,7 @@ class Menu:
                                       widget_padding=padding,
                                       scrollbar_color=(255, 255, 255),
                                       scrollbar_slider_color=(225, 225, 225))
-    # définir les textes des menus
+    # Définir les textes des menus
     options_text = ["Options",
                     " "]
 
@@ -57,22 +62,23 @@ class Menu:
                     "Riyad GHANEM",
                     "Kevin QIU",
                     "Windy JERUME",
+                    "Rayan KERROUMI-PERALTA"
                     " ",
                     "Sprite designer",
                     " ",
                     "Annie WANG",
                     " "]
 
-    # définir les sons
+    # Définir les sons
     sounds = pygame_menu.sound.Sound()
     sounds.set_sound(pygame_menu.sound.SOUND_TYPE_WIDGET_SELECTION, assets.fart)
 
-    # créer les menus
-    main_menu = pygame_menu.Menu("LIEPSIM", 800, 450, theme=theme_main_menu)
-    credits_menu = pygame_menu.Menu(" ", 800, 450, theme=theme_credits)
-    options_menu = pygame_menu.Menu(" ", 800, 450, theme=theme_credits)
+    # Créer les menus
+    main_menu = pygame_menu.Menu("LIEPSIM", width, height, theme = theme_main_menu)
+    credits_menu = pygame_menu.Menu(" ", width, height, theme = theme_credits)
+    options_menu = pygame_menu.Menu(" ", width, height, theme = theme_credits)
 
-    # permettre d'utiliser zqsd et les flèches pour naviguer dans le menu
+    # Permettre d'utiliser zqsd et les flèches pour naviguer dans le menu
     custom_controller = pygame_menu.controls.Controller()
 
     def btn_move_up(self, event):
@@ -85,7 +91,7 @@ class Menu:
 
     custom_controller.move_down = btn_move_down
 
-    # fonctions qui permettent de passer d'un menu à l'autre
+    # Fonctions qui permettent de passer d'un menu à l'autre
     def start_the_game():
         Menu.start = 1
         Menu.main_menu.clear()
@@ -97,7 +103,7 @@ class Menu:
     def credits_menu_open():
         Menu.main_menu._open(Menu.credits_menu)
 
-    # fonction d'initialisation du menu
+    # Fonction d'initialisation du menu
     def menu_init(self):
 
         Menu.main_menu.add.button('Jouer', Menu.start_the_game)
@@ -108,17 +114,17 @@ class Menu:
 
         Menu.main_menu.set_controller(Menu.custom_controller)
 
-    # boucle qui place le texte dans les crédits
+    # Boucle qui place le texte dans les crédits
     for i in credits_text:
-        credits_menu.add.label(i, align=pygame_menu.locals.ALIGN_CENTER, font_size=20)
+        credits_menu.add.label(i, align = pygame_menu.locals.ALIGN_CENTER, font_size=20)
     credits_menu.add.button('Precedent', pygame_menu.events.BACK)
-    credits_menu.set_sound(sounds, recursive=True)
+    credits_menu.set_sound(sounds, recursive = True)
 
-    # boucle qui place le texte dans les options
+    # Boucle qui place le texte dans les options
     for j in options_text:
         options_menu.add.label(j, align=pygame_menu.locals.ALIGN_CENTER, font_size=40)
 
-    # fonction qui permet de régler le volume
+    # Fonction qui permet de régler le volume
     def set_music_volume(slider_value: float):
         pygame.mixer.music.set_volume(slider_value / 100.0)  # Convert range 0-100 to 0.0-1.0
 

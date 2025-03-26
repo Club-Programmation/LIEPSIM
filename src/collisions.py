@@ -9,6 +9,12 @@ class Hitbox:
 
 def checkCollision(h1,h2):
   # on verifie si la h2 est dans la h1
-  if abs(h2.pos2[0]-h1.pos2[0]) <= 0 and abs(h2.pos1[0]-h1.pos1[0]) >= 0 and abs(h2.pos1[1]-h1.pos1[1]) <= 0 and abs(h2.pos2[1]-h1.pos2[1]) >= 0: 
+  if h2.pos2[0]-h1.pos2[0] <= 0 and h2.pos1[0]-h1.pos1[0] >= 0 and h2.pos1[1]-h1.pos1[1] <= 0 and h2.pos2[1]-h1.pos2[1] >= 0 or h2.pos2[0]-h1.pos1[0] >= 0 and h2.pos1[0]-h1.pos2[0] <= 0 and h2.pos1[1]-h1.pos2[1] <= 0 and h2.pos2[1]-h1.pos1[1] >= 0: 
      return True
   return False
+
+H1 = Hitbox((0,0),(10,10))
+H2 = Hitbox((10,10),(15,15))
+if checkCollision(H1,H2):
+  print("vamos a ir al instituto") # True
+  

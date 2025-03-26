@@ -80,11 +80,14 @@ class Player(pygame.sprite.Sprite):
                 moving = True
                 break
         
-        if Keys().esc:
+        if keys.esc:
             Menu.start = 0
             pygame.mixer.music.play()
             Menu.menu_init(Menu())
             Menu.main_menu.force_surface_update()
+
+        if keys.f11:
+            Menu.fullscreen = not Menu.fullscreen
         
         # Fonction de l'animation
         if moving:

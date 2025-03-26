@@ -1,2 +1,2 @@
 pygame
-pygame_menu
+pygame-menu
