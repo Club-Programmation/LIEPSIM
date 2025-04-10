@@ -14,8 +14,8 @@ class Player(pygame.sprite.Sprite):
         self.animation = False
 
         #self.rect = pygame.Rect(center(width, height)[0], center(width, height)[1], width, height)
-        
-        self.frame_index = 0 
+
+        self.frame_index = 0
         self.animation_speed = 15 # Ca change de frame toutes les 15 boucles du jeu
         self.counter = 0 # Ca sert pour plus tard
 
@@ -89,12 +89,15 @@ class Player(pygame.sprite.Sprite):
                 moving = True
                 break
         
-        if Keys().esc:
+        if keys.esc:
             Menu.start = 0
             pygame.mixer.music.play()
             self.menu.menu_init()
             self.menu.main_menu.force_surface_update()
-        
+
+        if keys.f11:
+            self.menu.fullscreen = not self.menu.fullscreen
+
         # Fonction de l'animation
         if moving:
             self.counter += 1

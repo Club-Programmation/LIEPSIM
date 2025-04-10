@@ -11,7 +11,7 @@ class Rectangle(Shape):
     super().__init__(color)
     self.width = width
     self.height = height
-    self.rect = pygame.Rect(position, width, height)
+    self.rect = pygame.Rect(self.position, width, height)
 
   def draw(self, screen):
     pygame.draw.rect(screen, self.color, self.rect)

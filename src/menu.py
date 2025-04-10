@@ -8,8 +8,12 @@ class Menu:
 
         self.assets = Assets()
         self.start = 0
-        # définir la taille de la fenêtre
-        self.surface = pygame.display.set_mode((800, 450))
+        # Définir la taille de la fenêtre
+        fullscreen = False
+        width = 800
+        height = 450
+        surface = pygame.display.set_mode((width, height), pygame.RESIZABLE)
+        #surface = pygame.display.set_mode((800, 450))
         # définir les variables pour les menu
         self.color_selection = (225, 225, 225)
         self.widget_color = (255, 255, 255)
@@ -70,6 +74,7 @@ class Menu:
                         "Riyad GHANEM",
                         "Kevin QIU",
                         "Windy JERUME",
+                        "Rayan KERROUMI-PERALTA",
                         " ",
                         "Sprite designer",
                         " ",
@@ -81,10 +86,10 @@ class Menu:
         self.sounds.set_sound(pygame_menu.sound.SOUND_TYPE_WIDGET_SELECTION, self.assets.fart)
 
         # créer les menus
-        self.main_menu = pygame_menu.Menu("LIEPSIM", 800, 450, theme=self.theme_main_menu)
-        self.credits_menu = pygame_menu.Menu(" ", 800, 450, theme=self.theme_credits)
-        self.options_menu = pygame_menu.Menu(" ", 800, 450, theme=self.theme_credits)
-        self.skins_menu = pygame_menu.Menu(" ", 800, 450, theme=self.theme_skins)
+        self.main_menu = pygame_menu.Menu("LIEPSIM", width, height, theme=self.theme_main_menu)
+        self.credits_menu = pygame_menu.Menu(" ", width, height, theme=self.theme_credits)
+        self.options_menu = pygame_menu.Menu(" ", width, height, theme=self.theme_credits)
+        self.skins_menu = pygame_menu.Menu(" ", width, height, theme=self.theme_skins)
 
         # boucle qui place le texte dans les crédits
         for i in self.credits_text:
@@ -154,7 +159,7 @@ class Menu:
         self.skins_menu.add.banner(self.right_arrow, change_skin_right, align=pygame_menu.locals.ALIGN_RIGHT)
         self.skins_menu.add.banner(self.left_arrow, change_skin_left, align=pygame_menu.locals.ALIGN_LEFT)
 
-    # permettre d'utiliser zqsd et les flèches pour naviguer dans le menu
+    # Permettre d'utiliser zqsd et les flèches pour naviguer dans le menu
     custom_controller = pygame_menu.controls.Controller()
 
     def btn_move_up(self, event):
@@ -183,7 +188,7 @@ class Menu:
     def credits_menu_open(self):
         self.main_menu._open(self.credits_menu)
 
-    # fonction d'initialisation du menu
+    # Fonction d'initialisation du menu
     def menu_init(self):
 
         self.main_menu.add.button('Jouer', self.skins_open)

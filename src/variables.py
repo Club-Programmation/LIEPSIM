@@ -15,6 +15,8 @@ class Keys:
     self.left = keys[pygame.K_LEFT] or keys[pygame.K_q]
     self.right = keys[pygame.K_RIGHT] or keys[pygame.K_d]
 
+    self.f11 = keys[pygame.K_F11]
+
 class Colors:
   def __init__(self):
     self.black = (0, 0, 0)
@@ -54,6 +56,11 @@ class Assets:
 
     self.fart = os.path.join(sounds_path, "fart.mp3")
     self.candyland = os.path.join(sounds_path, "Candyland.mp3")
+
+class System:
+  def __init__(self):
+    self.MIN_WIDTH = 800
+    self.MIN_HEIGHT = 450
   
 def center(width, height):
   return [(800 - width) // 2, (450 - height) // 2]
