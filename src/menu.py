@@ -13,7 +13,7 @@ class Menu:
         width = 800
         height = 450
         surface = pygame.display.set_mode((width, height), pygame.RESIZABLE)
-        #surface = pygame.display.set_mode((800, 450))
+        # surface = pygame.display.set_mode((800, 450))
         # définir les variables pour les menu
         self.color_selection = (225, 225, 225)
         self.widget_color = (255, 255, 255)
@@ -74,8 +74,8 @@ class Menu:
                         "Riyad GHANEM",
                         "Kevin QIU",
                         "Windy JERUME",
-                        "Rayan KERROUMI-PERALTA",
-                        " ",
+                             "Rayan KERROUMI-PERALTA",
+                             " ",
                         "Sprite designer",
                         " ",
                         "Annie WANG",
