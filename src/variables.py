@@ -58,6 +58,16 @@ class Assets:
 def center(width, height):
   return [(800 - width) // 2, (450 - height) // 2]
 
-def load_and_scale_image(image_path, size=(100, 100)):
+
+def load_and_scale_image(assets, order, size=(100, 100)):
+    match order:
+        case 0:
+            return pygame.transform.scale(pygame.image.load(assets.choqué), size)
+        case 1:
+            return pygame.transform.scale(pygame.image.load(assets.up_arrow), size)
+        case 2:
+            return pygame.transform.scale(pygame.image.load(assets.down_arrow), size)
+
+def load_and_scale_image2(image_path, size=(100, 100)):
     # Charge et redimensionne une image
     return pygame.transform.scale(pygame.image.load(image_path), size)

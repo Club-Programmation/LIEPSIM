@@ -9,31 +9,10 @@ class Player(pygame.sprite.Sprite):
     def __init__(self, x, y):
         super().__init__()
         self.assets = Assets()
+        self.menu = Menu()
 
-        # Listes d'images pour chaque animation
-        self.walk_up = [
-            load_and_scale_image(self.assets.choqué),
-            load_and_scale_image(self.assets.up_arrow)
-        ]
-        self.walk_down = [
-            load_and_scale_image(self.assets.choqué),
-            load_and_scale_image(self.assets.down_arrow)
-        ]
-        self.walk_left = [
-            load_and_scale_image(self.assets.choqué),
-            load_and_scale_image(self.assets.left_arrow)
-        ]
-        self.walk_right = [
-            load_and_scale_image(self.assets.choqué),
-            load_and_scale_image(self.assets.right_arrow)
-        ]
+        self.animation = False
 
-
-        # Image de départ
-        self.image = self.walk_right[0] # On commence à la première frame
-        width, height = self.image.get_size()
-        x, y = center(width, height)
-        self.rect = pygame.Rect(x, y, width, height)
         #self.rect = pygame.Rect(center(width, height)[0], center(width, height)[1], width, height)
         
         self.frame_index = 0 
@@ -42,6 +21,36 @@ class Player(pygame.sprite.Sprite):
 
         self.speed = 5 # Vitesse du joueur fixe
         self.direction = "right" # On dit que le perso commence en regardant vers la droite
+
+    def function_animation(self, order):
+        # Listes d'images pour chaque animation
+
+        if self.animation == False:
+
+            self.walk_up = [
+                load_and_scale_image(self.assets, order),
+                load_and_scale_image2(self.assets.up_arrow)
+            ]
+            self.walk_down = [
+                load_and_scale_image(self.assets, order),
+                load_and_scale_image2(self.assets.down_arrow)
+            ]
+            self.walk_left = [
+                load_and_scale_image(self.assets, order),
+                load_and_scale_image2(self.assets.left_arrow)
+            ]
+            self.walk_right = [
+                load_and_scale_image(self.assets, order),
+                load_and_scale_image2(self.assets.right_arrow)
+            ]
+
+            # Image de départ
+            self.image = self.walk_right[0]  # On commence à la première frame
+            width, height = self.image.get_size()
+            x, y = center(width, height)
+            self.rect = pygame.Rect(x, y, width, height)
+
+            self.animation = True
 
     def update(self):
         moving = False
@@ -83,8 +92,8 @@ class Player(pygame.sprite.Sprite):
         if Keys().esc:
             Menu.start = 0
             pygame.mixer.music.play()
-            Menu.menu_init(Menu())
-            Menu.main_menu.force_surface_update()
+            self.menu.menu_init()
+            self.menu.main_menu.force_surface_update()
         
         # Fonction de l'animation
         if moving:
