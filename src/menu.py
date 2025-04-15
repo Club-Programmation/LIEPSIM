@@ -9,10 +9,10 @@ class Menu:
         self.assets = Assets()
         self.start = 0
         # Définir la taille de la fenêtre
-        fullscreen = False
-        width = 800
-        height = 450
-        surface = pygame.display.set_mode((width, height), pygame.RESIZABLE)
+        self.fullscreen = False
+        self.width = 800
+        self.height = 450
+        self.surface = pygame.display.set_mode((self.width, self.height), pygame.RESIZABLE)
         # surface = pygame.display.set_mode((800, 450))
         # définir les variables pour les menu
         self.color_selection = (225, 225, 225)
@@ -86,10 +86,10 @@ class Menu:
         self.sounds.set_sound(pygame_menu.sound.SOUND_TYPE_WIDGET_SELECTION, self.assets.fart)
 
         # créer les menus
-        self.main_menu = pygame_menu.Menu("LIEPSIM", width, height, theme=self.theme_main_menu)
-        self.credits_menu = pygame_menu.Menu(" ", width, height, theme=self.theme_credits)
-        self.options_menu = pygame_menu.Menu(" ", width, height, theme=self.theme_credits)
-        self.skins_menu = pygame_menu.Menu(" ", width, height, theme=self.theme_skins)
+        self.main_menu = pygame_menu.Menu("LIEPSIM", self.width, self.height, theme=self.theme_main_menu)
+        self.credits_menu = pygame_menu.Menu(" ", self.width, self.height, theme=self.theme_credits)
+        self.options_menu = pygame_menu.Menu(" ", self.width, self.height, theme=self.theme_credits)
+        self.skins_menu = pygame_menu.Menu(" ", self.width, self.height, theme=self.theme_skins)
 
         # boucle qui place le texte dans les crédits
         for i in self.credits_text:

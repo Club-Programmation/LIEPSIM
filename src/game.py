@@ -13,7 +13,7 @@ class Game:
         self.assets = Assets()
 
         pygame.mixer.music.load(self.assets.candyland)
-        pygame.mixer.music.play()
+        pygame.mixer.music.play(loops=-1)
 
         self.clock = pygame.time.Clock()
         self.running = True
@@ -39,22 +39,22 @@ class Game:
                     exit()
                 elif event.type == pygame.VIDEORESIZE:
                     # Redimensionner la fenêtre
-                    if not Menu.fullscreen:
+                    if not self.menu.fullscreen:
                         info = pygame.display.Info()
-                        Menu.surface = pygame.display.set_mode((info.current_w, info.current_h), pygame.RESIZABLE)
+                        self.menu.surface = pygame.display.set_mode((info.current_w, info.current_h), pygame.RESIZABLE)
                 elif event.type == pygame.KEYDOWN:
                     if event.key == pygame.K_F11:
-                        Menu.fullscreen = not Menu.fullscreen  # Basculer l'état
-                        if Menu.fullscreen:
+                        self.menu.fullscreen = not self.menu.fullscreen  # Basculer l'état
+                        if self.menu.fullscreen:
                             # Passer en plein écran avec la résolution actuelle
                             info = pygame.display.Info()
-                            Menu.width = info.current_w
-                            Menu.height = info.current_h
-                            Menu.surface = pygame.display.set_mode((0, 0), pygame.FULLSCREEN)
+                            self.menu.width = info.current_w
+                            self.menu.height = info.current_h
+                            self.menu.surface = pygame.display.set_mode((0, 0), pygame.FULLSCREEN)
                             #Menu.surface = pygame.display.set_mode((Menu.surface.get_width(), Menu.surface.get_height()), pygame.FULLSCREEN)
                         else:
                             # Revenir en mode fenêtré
-                            Menu.surface = pygame.display.set_mode((Menu.width, Menu.height), pygame.RESIZABLE)
+                            self.menu.surface = pygame.display.set_mode((self.menu.width, self.menu.height), pygame.RESIZABLE)
 
             if self.menu.main_menu.is_enabled():
                 self.menu.main_menu.update(events)
